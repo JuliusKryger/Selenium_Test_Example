@@ -63,6 +63,32 @@ Inside `src/test.ts`:
 ```typescript
 import { Builder, By, until } from 'selenium-webdriver';
 import { describe, expect, test } from '@jest/globals';
+
+describe("Frontend Test with Selenium", () => {
+
+  let driver;
+
+  beforeAll(async () => {
+    driver = await new Builder().forBrowser('chrome').build();
+  });
+
+  afterAll(async () => {
+    await driver.quit();
+  });
+
+  test("Click a button on a page", async () => {
+    await driver.get('http://example.com'); // replace with your URL
+
+    const button = await driver.wait(until.elementLocated(By.id('your-button-id')), 10000); // replace 'your-button-id' with your button's ID
+    await button.click();
+
+    // Here you'd usually add some assertions, e.g.:
+    const resultElement = await driver.findElement(By.id('result-element-id')); // replace with your result element's ID
+    const text = await resultElement.getText();
+
+    expect(text).toBe('Expected result'); // replace 'Expected result' with the text/result you expect
+  });
+});
 ```
 
 ```typescript
@@ -93,8 +119,17 @@ describe("Frontend Test with Selenium", () => {
 
     expect(text).toBe('Expected result'); // replace 'Expected result' with the text/result you expect
   });
-});
 
+  test("Check page title", async () => {
+    await driver.get('http://example.com'); // replace with your URL
+    
+    const title = await driver.getTitle();
+    
+    expect(title).toBe('Expected Title'); // replace 'Expected Title' with the title you expect
+  });
+
+  // ... You can add more tests here.
+});
 ```
 
 ## 8. Ensure Selenium Driver is Set Up
