@@ -99,3 +99,24 @@ Recap and Additional Tips:
     Maintainability: With this setup, maintenance becomes simpler. For example, if the login page's UI changes, only the LoginPage object needs to be updated.
 
     Additional Methods: In real-world scenarios, the page object may have more methods that allow checking certain page states, validating messages, navigating to other pages, and more.
+
+
+
+    src/
+|-- tests/
+|   |-- pageObjects/
+|   |   |-- LoginPage.ts
+|   |   |-- DashboardPage.ts
+|   |   |-- SettingsPage.ts
+|   |   |-- ... (other page objects)
+|   |
+|   |-- utils/
+|   |   |-- CustomWait.ts
+|   |   |-- TestData.ts
+|   |   |-- ... (other utilities)
+|   |
+|   |-- loginTests.ts
+|   |-- dashboardTests.ts
+|   |-- settingsTests.ts
+|   |-- ... (other test files)
+
